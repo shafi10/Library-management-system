@@ -55,3 +55,27 @@ exports.updateLoan = async (req,res) =>{
         console.log(error);
     }
 }
+
+
+exports.deleteLoan = async (req,res) =>{
+   
+    let { book } = req.body
+    try {
+        let books = await Book.findOne({name:book})
+        let inStock = books.inStock + 1
+        await Book.findOneAndUpdate(
+          {name:book},
+          {$set:{inStock}},{new:true}
+      )
+
+        const loan = await Loan.findById(req.params.id)
+        if(!loan){
+            return res.status(404).json({msg:'loan not found'})
+        }
+        await loan.remove()
+
+        res.json({msg: 'Loan deleted'})
+    } catch (error) {
+        
+    }
+}
