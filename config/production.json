@@ -1,4 +1,4 @@
 {
-    "mongoURI":"mongodb://shafi:shafi100@ds259711.mlab.com:59711/library",
+    "mongoURI":"mongodb+srv://shafi:shafi100@cluster0.lvhfl.mongodb.net/library?retryWrites=true&w=majority",
     "jwtSecret":"mysecret"
 }
